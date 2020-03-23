@@ -1,12 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Bare from './components/bare.js'
+import Home from './components/home.js'
 
 const App = () => {
-  return (<>
-            <Bare />
-          </>
-          );
+  return <Home />
 };
 
 ReactDOM.render(<App />, document.querySelector("#root"));
