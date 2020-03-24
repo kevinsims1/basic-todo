@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox"
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
+//css
 import '../css/todo.css'
 
 const Todo = (props) => {
@@ -11,16 +16,21 @@ const Todo = (props) => {
     }
 
     return (
-        <div style={{ display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center" }}>
-            <Checkbox
-                checked={checked}
-                onChange={handleChange}
-                inputProps={{ 'aria-label': 'primary checkbox' }}
-
-            />
-            <h3 className={checked ? "todo" : ""}>{props.todo}</h3>
-        </div>
-
+        <List style={{ display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "flex-start", margin: "10px",  width: "90%", maxWidth: "400px" }}>
+            <ListItem>
+                <ListItemIcon>
+                    <Checkbox
+                        checked={checked}
+                        onChange={handleChange}
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                    />
+                </ListItemIcon>
+                <ListItemText
+                    primary={props.todo}
+                    className={checked ? "todo" : ""}
+                />
+            </ListItem>
+        </List>
     )
 };
 

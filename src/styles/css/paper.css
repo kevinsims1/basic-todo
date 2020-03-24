@@ -1,9 +1,15 @@
 .paper{
-    max-width: 500px;
-    padding: 15px;
+    min-width: 50%;
+    max-width: 2000px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #494949 !important;
+    /* Center paper */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .addtodo{
