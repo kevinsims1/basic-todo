@@ -1,6 +1,8 @@
 html, body, #root {
     width:100vw;
-    background-color: #1b1b1b;
+    background-color: #394199 ;
+    color: white !important;
     margin: 0;
     font-size: 20px;
+    font-family: "Roboto"
 }

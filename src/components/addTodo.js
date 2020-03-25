@@ -2,7 +2,9 @@ import React from "react";
 import {TextField, Button } from '@material-ui/core'
 
 //css
-import "../css/paper.css"
+import "../styles/css/paper.css"
+
+//TODO: find out how to use withStyles from material ui
 
 const AddTodo = (props) => {
     return (
@@ -11,7 +13,7 @@ const AddTodo = (props) => {
             Add Todo
           </Button>
           
-          <TextField id="standard-basic" label="New Todo" onChange={props.handleChange}/>
+          <TextField id="standard-basic"  label="New Todo" onChange={props.handleChange}/>
         </div>
     )
 };

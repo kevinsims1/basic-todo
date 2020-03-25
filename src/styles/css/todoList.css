@@ -1,0 +1,5 @@
+.todoList{
+    height: 80vh;
+    overflow-y: auto;
+    margin: 10px
+}
