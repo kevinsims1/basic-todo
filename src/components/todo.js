@@ -11,10 +11,7 @@ import {MdDelete} from "react-icons/md"
 import '../styles/css/todo.css'
 
 const Todo = (props) => {
-    const [checked, setChecked] = useState(false)
-    const handleChange = (e) => {
-        setChecked(e.target.checked)
-    }
+   
     
     return (
         <Paper style={{backgroundColor: '#626dbb', marginRight: '10px'}} elevation={6}>
@@ -22,8 +19,8 @@ const Todo = (props) => {
                 <ListItem>
                     <ListItemIcon>
                         <Checkbox
-                            checked={checked}
-                            onChange={handleChange}
+                            checked={props.todo.checked}
+                            onChange={() => props.handleToggle(props.todo.id)}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
                     </ListItemIcon>
@@ -36,7 +33,7 @@ const Todo = (props) => {
 
                     <ListItemText
                         primary={props.todo.message}
-                        className={checked ? "todo" : "to"}
+                        className={props.todo.checked ? "todo" : "to"}
                     />
                 </ListItem>
             </List>

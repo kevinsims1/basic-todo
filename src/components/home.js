@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import TodoList from './todoList.js'
-import AddTodo from './addTodo.js'
 import { Paper, IconButton } from '@material-ui/core'
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 
@@ -8,15 +7,22 @@ import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import "../styles/css/paper.css"
 const Home = () => {
   const [todos, setTodos] = useState([]);
-  const [addToDo, setAddTodo] = useState()
+  const [addToDo, setAddTodo] = useState("false")
+  const [newTodos, setNewTodos] = useState([])
+
   useEffect(() => {
-    setTodos([{id: 1, message: "do this"}, {id: 2, message: "do this"}, {id: 3, message: "do this"}, {id: 4, message: "do this"}, ])
+    setTodos([{id: 1, message: "do this", checked: false}, {id: 2, message: "do this", checked: false}, {id: 3, message: "do this", checked: false}, {id: 4, message: "do this", checked: false}, ])
   }, [])
 
+  const onClick = () => {
+    setTodos(newTodos)
+  }
+
   const iconClick = (e) => {
-    console.log(e)
+    console.log(e.currentTarget.value)
     e.preventDefault()
     setAddTodo(e.currentTarget.value)
+    console.log(addToDo)
   }
 
   const todoDelete = (e) => {
@@ -27,6 +33,28 @@ const Home = () => {
       }
     }
     setTodos(td)
+  }
+
+
+  const handleChange = (e) => {
+    let typeTodo = {
+        id: todos.length + 1,
+        message: e.target.value,
+        checked: false
+      }
+
+    let newTD = [...todos, typeTodo]
+    setNewTodos(newTD)
+
+  }
+  
+  const handleToggle = (id) => {
+      const item = todos.find((todo) => todo.id === id)
+      const newItem = {...item, checked: !item.checked}
+      const index = todos.findIndex(item => item.id === id)
+      const newItems = [...todos]
+      newItems[index] = newItem
+      setTodos(newItems)
   }
 
   if (todos.length > 0) {
@@ -43,7 +71,7 @@ const Home = () => {
         </header>
         <div>
           
-          <TodoList addToDo={addToDo} todos={todos} setTodos={setTodos} todoDelete={todoDelete}/>
+          <TodoList handleToggle={handleToggle} handleChange={handleChange} addTodo={addToDo} onClick={onClick} todos={todos} setTodos={setTodos} todoDelete={todoDelete}/>
         </div>
       </Paper>
     )
