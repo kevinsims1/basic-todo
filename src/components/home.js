@@ -6,18 +6,27 @@ import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 
 //css
 import "../styles/css/paper.css"
-
 const Home = () => {
   const [todos, setTodos] = useState([]);
   const [addToDo, setAddTodo] = useState()
   useEffect(() => {
-    setTodos(["do this", "do that", "do this", "do that", "do this", "do that", "do this", "do that", "do this", "do that", "do this", "do that"])
+    setTodos([{id: 1, message: "do this"}, {id: 2, message: "do this"}, {id: 3, message: "do this"}, {id: 4, message: "do this"}, ])
   }, [])
 
   const iconClick = (e) => {
     console.log(e)
     e.preventDefault()
     setAddTodo(e.currentTarget.value)
+  }
+
+  const todoDelete = (e) => {
+    var td = []
+    for(var i =0; i < todos.length; i++){
+      if(e.currentTarget.value != todos[i].id){
+        td.push(todos[i])
+      }
+    }
+    setTodos(td)
   }
 
   if (todos.length > 0) {
@@ -34,7 +43,7 @@ const Home = () => {
         </header>
         <div>
           
-          <TodoList addToDo={addToDo} todos={todos} />
+          <TodoList addToDo={addToDo} todos={todos} setTodos={setTodos} todoDelete={todoDelete}/>
         </div>
       </Paper>
     )

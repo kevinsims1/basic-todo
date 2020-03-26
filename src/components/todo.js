@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox"
-import {Paper} from '@material-ui/core';
+import {Paper, IconButton} from '@material-ui/core';
 import List from '@material-ui/core/list';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -9,7 +9,6 @@ import {MdDelete} from "react-icons/md"
 
 //css
 import '../styles/css/todo.css'
-import AddTodo from "./addTodo";
 
 const Todo = (props) => {
     const [checked, setChecked] = useState(false)
@@ -30,11 +29,13 @@ const Todo = (props) => {
                     </ListItemIcon>
 
                     <ListItemIcon>
-                        <MdDelete size={30}/>
+                        <IconButton value={props.todo.id} onClick={props.todoDelete}>
+                            <MdDelete size={30}/>
+                        </IconButton>
                     </ListItemIcon>
 
                     <ListItemText
-                        primary={props.todo}
+                        primary={props.todo.message}
                         className={checked ? "todo" : "to"}
                     />
                 </ListItem>

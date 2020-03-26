@@ -10,14 +10,20 @@ const TodoList = (props) => {
   const [newTodos, setNewTodos] = useState([])
 
   const handleChange = (e) => {
-    let newTD = [...todos, e.target.value]
+    let typeTodo = {
+        id: props.todos.length + 1,
+        message: e.target.value
+      }
+
+    let newTD = [...props.todos, typeTodo]
     setNewTodos(newTD)
+
   }
 
   const onClick = (e) => {
     console.log(e)
     e.preventDefault()
-    setTodos(newTodos)
+    props.setTodos(newTodos)
   }
 
   if (props.addToDo === "true") {
@@ -25,7 +31,7 @@ const TodoList = (props) => {
       <Paper className="todopaper">
         <AddTodo handleChange={handleChange} onClick={onClick} />
         <div className="todoList">
-          {props.todos.slice(0).reverse().map((todo) => <Todo todo={todo} />)}
+          {props.todos.slice(0).reverse().map((todo) => <Todo todo={todo} todoDelete={props.todoDelete}/>)}
         </div>
       </Paper>
       
@@ -35,7 +41,7 @@ const TodoList = (props) => {
     return (
       <Paper className="todopaper">
         <div className="todoList">
-        {props.todos.slice(0).reverse().map((todo) => <Todo todo={todo} />)}
+        {props.todos.slice(0).reverse().map((todo) => <Todo todo={todo} todoDelete={props.todoDelete}/>)}
       </div>
       </Paper>
       

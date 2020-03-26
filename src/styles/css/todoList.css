@@ -1,5 +1,6 @@
 .todoList{
-    height: 80vh;
+    min-height: 105px;
+    max-height: 80vh;
     overflow-y: auto;
     margin: 10px
 }
