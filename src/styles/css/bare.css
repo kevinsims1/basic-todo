@@ -1,7 +1,7 @@
 html, body, #root {
     width:100vw;
-    background-color: #394199 ;
-    color: white !important;
+    background-color: #efefef;
+    color: rgba(0, 0, 0, 0.54) !important;
     margin: 0;
     font-size: 20px;
     font-family: "Roboto"

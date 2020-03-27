@@ -11,7 +11,7 @@ const TodoList = (props) => {
 
     if (props.addTodo === "true") {
       return (
-        <Paper className="todopaper">
+        <Paper elevation={0} className="todopaper">
           <AddTodo handleChange={props.handleChange} onClick={props.onClick} />
           <div className="todoList">
             {props.todos.slice(0).reverse().map((todo) => <Todo key={todo.id} todo={todo} todoDelete={props.todoDelete} handleToggle={props.handleToggle} />)}
@@ -20,7 +20,7 @@ const TodoList = (props) => {
       )
     } else {
       return (
-        <Paper className="todopaper">
+        <Paper elevation={0} className="todopaper">
           <div className="todoList">
             {props.todos.length > 0 ? props.todos.slice(0).reverse().map((todo) => <Todo key={todo.id} todo={todo} todoDelete={props.todoDelete} handleToggle={props.handleToggle} />) : <div>Click Plus Button To Add Todo</div>}
           </div>

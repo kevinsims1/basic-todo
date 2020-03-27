@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import TodoList from './todoList.js'
 import { Paper, IconButton } from '@material-ui/core'
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
+import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Clock from "react-live-clock"
 import Datetime from "react-datetime"
+import {CustomIconButton} from '../styles/Customs.js'
 //css
 import "../styles/css/paper.css"
 const Home = () => {
@@ -62,19 +64,18 @@ const Home = () => {
     return new Date().toDateString();
   }
 
-
   return (
-    <Paper elevation={3} className="paper">
+    <Paper elevation={20} className="paper">
       <header>
-        <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.74)', fontSize: "50px", padding: "0", margin: "0", fontFamily: "Roboto" }}>To-Do List</h1>
+        <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.74)', fontSize: "50px", padding: "0", margin: "0", fontFamily: "Roboto" }}>todos</h1>
         <div style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "100%"}}>
           <div style={{paddingRight: "4%"}}>
-            <IconButton onClick={iconClick} value="true" >
+            <CustomIconButton onClick={iconClick} value="true" color="primary" size="medium">
               <FiPlusCircle />
-            </IconButton>
-            <IconButton onClick={iconClick} value="false">
+            </CustomIconButton>
+            <CustomIconButton onClick={iconClick} value="false" color="primary" size="medium">
               <FiMinusCircle />
-            </IconButton>
+            </CustomIconButton>
           </div>
           <div style={{ display: "flex", flexDirection: "row", alignItems: "center"}}> 
             <h4 style={{paddingRight: "15px", color: "rgba(0, 0, 0, 0.54)"}}>{date()}</h4>

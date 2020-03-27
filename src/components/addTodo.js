@@ -1,19 +1,21 @@
 import React from "react";
-import {TextField, Button } from '@material-ui/core'
-
+import {TextField, Button, withStyles } from '@material-ui/core'
+import {CustomButton} from '../styles/Customs.js'
 //css
 import "../styles/css/paper.css"
 
 //TODO: find out how to use withStyles from material ui
 
 const AddTodo = (props) => {
+
+
     return (
         <div className="addtodo">
-          <Button variant="contained"  className="button"  color="primary" size="large" onClick={()=>props.onClick()}>
+          <CustomButton variant="contained"  className="button"  size="large" onClick={()=>props.onClick()} >
             Add Todo
-          </Button>
+          </CustomButton>
           
-          <TextField id="standard-basic"  label="New Todo" onChange={(e) => props.handleChange(e)}/>
+          <TextField id="standard-basic"  color="primary" label="New Todo" onChange={(e) => props.handleChange(e)}/>
         </div>
     )
 };

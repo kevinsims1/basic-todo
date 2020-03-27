@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #626dbb !important;
+    background-color: #fff !important;
     padding: 10px;
     /* Center paper */
     position: fixed;
@@ -15,7 +15,7 @@
 }
 
 .todopaper{
-    background-color:#757de8 !important;
+    background-color:#fff !important;
 }
 
 .addtodo{
