@@ -65,30 +65,33 @@ const Home = () => {
   }
 
   return (
-    <Paper elevation={20} className="paper">
-      <header>
-        <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.74)', fontSize: "50px", padding: "0", margin: "0", fontFamily: "Roboto" }}>todos</h1>
-        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "100%"}}>
-          <div style={{paddingRight: "4%"}}>
-            <CustomIconButton onClick={iconClick} value="true" color="primary" size="medium">
-              <FiPlusCircle />
-            </CustomIconButton>
-            <CustomIconButton onClick={iconClick} value="false" color="primary" size="medium">
-              <FiMinusCircle />
-            </CustomIconButton>
-          </div>
-          <div style={{ display: "flex", flexDirection: "row", alignItems: "center"}}> 
-            <h4 style={{paddingRight: "15px", color: "rgba(0, 0, 0, 0.54)"}}>{date()}</h4>
-            <Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'} style={{color: "rgba(0, 0, 0, 0.54)"}}/>
-          </div>
-          
-        </div>
+    <div className="paperWrapper">
+       <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.74)', fontSize: "50px", padding: "0", margin: "0", fontFamily: "Roboto" }}>todos</h1>
+        <Paper elevation={20} className="paper">
+          <header>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "100%"}}>
+              <div style={{paddingRight: "4%"}}>
+                <CustomIconButton onClick={iconClick} value="true" color="primary" size="medium">
+                  <FiPlusCircle />
+                </CustomIconButton>
+                <CustomIconButton onClick={iconClick} value="false" color="primary" size="medium">
+                  <FiMinusCircle />
+                </CustomIconButton>
+              </div>
+              <div style={{ display: "flex", flexDirection: "row", alignItems: "center"}}> 
+                <h4 style={{paddingRight: "15px", color: "rgba(0, 0, 0, 0.54)"}}>{date()}</h4>
+                <Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'} style={{color: "rgba(0, 0, 0, 0.54)"}}/>
+              </div>
+              
+            </div>
 
-      </header>
-      <div>
-        <TodoList handleToggle={handleToggle} handleChange={handleChange} addTodo={addToDo} onClick={onClick} todos={todos} setTodos={setTodos} todoDelete={todoDelete} />
-      </div>
-    </Paper>
+          </header>
+          <div>
+            <TodoList handleToggle={handleToggle} handleChange={handleChange} addTodo={addToDo} onClick={onClick} todos={todos} setTodos={setTodos} todoDelete={todoDelete} />
+          </div>
+        </Paper>
+    </div>
+    
   )
 };
 

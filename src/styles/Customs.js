@@ -6,7 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 export const CustomButton = withStyles(() => ({
   root: {
     color: '#efefef',
-    backgroundColor: '#D1B6D3',
+    backgroundColor: 'rgba(0, 0, 0, 0.54)',
     '&:hover': {
       opacity: 0.7,
       backgroundColor: 'rgba(0, 0, 0, 0.54)',
