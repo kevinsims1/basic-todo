@@ -18,7 +18,7 @@ const Todo = (props) => {
    
 
     return (
-        <Paper style={{ backgroundColor: '#efefef', marginRight: '10px', }} elevation={1}>
+        <Paper style={{ backgroundColor: '#fff', marginRight: '10px', }} elevation={0}>
             <List style={{ display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "flex-start", margin: "10px", width: "90%", maxWidth: "400px" }}>
                 <ListItem>
                     <ListItemIcon>
