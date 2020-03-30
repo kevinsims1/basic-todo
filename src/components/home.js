@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import TodoList from './todoList.js'
-import { Paper, IconButton } from '@material-ui/core'
+import { Paper } from '@material-ui/core'
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
-import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Clock from "react-live-clock"
-import Datetime from "react-datetime"
 import {CustomIconButton} from '../styles/Customs.js'
+
 //css
 import "../styles/css/paper.css"
+
 const Home = () => {
   const [todos, setTodos] = useState([]);
   const [addToDo, setAddTodo] = useState("false")
