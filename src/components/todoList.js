@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Todo from './todo.js'
-import '../styles/css/todoList.css'
 import AddTodo from "./addTodo.js";
 import {Paper} from "@material-ui/core"
 
+//css
+import '../styles/css/todoList.css'
 import '../styles/css/paper.css'
 
 const TodoList = (props) => {

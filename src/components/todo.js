@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import Checkbox from "@material-ui/core/Checkbox"
-import { Paper, IconButton, withStyles } from '@material-ui/core';
+import React from "react";
+import { Paper, IconButton } from '@material-ui/core';
 import List from '@material-ui/core/list';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import { MdDelete } from "react-icons/md"
 
 import {CustomCheckbox, CustomLit} from '../styles/Customs.js'
