@@ -5,13 +5,14 @@ import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import Clock from "react-live-clock"
 import {CustomIconButton} from '../styles/Customs.js'
 
-import { Router, Link } from "@reach/router"
+import { Link } from "@reach/router"
 
 
 //css
 import "../styles/css/paper.css"
 
 const Home = () => {
+  const [currUser, setCurUser] = useState({})
   const [todos, setTodos] = useState([]);
   const [addToDo, setAddTodo] = useState("false")
   const [newTodos, setNewTodos] = useState([])
@@ -27,14 +28,38 @@ const Home = () => {
     .then(response => response.json())
     .then(data => {
         console.log(data)
+        setCurUser(data.user)
+        setTodos(data.todos)
     })
     .catch(err => {console.log(err)})
 
-    setTodos([{ id: 1, message: "do this", checked: false }, { id: 2, message: "do this", checked: false }, { id: 3, message: "do this", checked: false }, { id: 4, message: "do this", checked: false },])
+    // setTodos([{ id: 1, message: "do this", checked: false }, { id: 2, message: "do this", checked: false }, { id: 3, message: "do this", checked: false }, { id: 4, message: "do this", checked: false },])
   }, [])
 
   const onClick = () => {
-    setTodos(newTodos)
+    console.log(newTodos[newTodos.length - 1].message, "message")
+    console.log(currUser._id)
+    let realTodo = {
+      message: newTodos[newTodos.length - 1].message,
+      user_id: currUser._id
+    }
+    console.log(currUser._id)
+
+
+    fetch("http://localhost:3000/todo/create", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(realTodo)
+    })
+    .then(response => {
+      console.log(response)
+      return response.json()
+    })
+    .then(data => {
+        console.log(data)
+        setTodos(newTodos)
+    })
+    .catch(err => {console.log("ERROROROR",err)})
   }
 
   const iconClick = (e) => {
@@ -56,15 +81,14 @@ const Home = () => {
 
 
   const handleChange = (e) => {
-    let typeTodo = {
+    let phonyTodo = {
       id: todos.length + 1,
       message: e.target.value,
       checked: false
     }
 
-    let newTD = [...todos, typeTodo]
+    let newTD = [...todos, phonyTodo]
     setNewTodos(newTD)
-
   }
 
   const handleToggle = (id) => {
