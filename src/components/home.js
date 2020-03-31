@@ -5,6 +5,9 @@ import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import Clock from "react-live-clock"
 import {CustomIconButton} from '../styles/Customs.js'
 
+import { Router, Link } from "@reach/router"
+
+
 //css
 import "../styles/css/paper.css"
 
@@ -14,6 +17,19 @@ const Home = () => {
   const [newTodos, setNewTodos] = useState([])
 
   useEffect(() => {
+    fetch("http://localhost:3000/user",{
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': window.localStorage.getItem("birdie")
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
+    .catch(err => {console.log(err)})
+
     setTodos([{ id: 1, message: "do this", checked: false }, { id: 2, message: "do this", checked: false }, { id: 3, message: "do this", checked: false }, { id: 4, message: "do this", checked: false },])
   }, [])
 
@@ -77,6 +93,8 @@ const Home = () => {
                 <CustomIconButton onClick={iconClick} value="false" color="primary" size="medium">
                   <FiMinusCircle />
                 </CustomIconButton>
+                <Link to="login">login</Link> 
+                <Link to="signup">signup</Link> 
               </div>
               <div style={{ display: "flex", flexDirection: "row", alignItems: "center"}}> 
                 <h4 style={{paddingRight: "15px", color: "rgba(0, 0, 0, 0.54)"}}>{date()}</h4>
