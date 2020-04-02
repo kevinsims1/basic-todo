@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import TodoList from './todoList.js'
+import TodoList from '../components/todoList.js'
 import { Paper } from '@material-ui/core'
-import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
-import Clock from "react-live-clock"
-import {CustomIconButton} from '../styles/Customs.js'
 
-import { Link } from "@reach/router"
-
+import { Redirect } from "@reach/router"
+import Header from "../components/header.js"
 
 //css
 import "../styles/css/paper.css"
@@ -18,7 +15,7 @@ const Home = () => {
   const [newTodos, setNewTodos] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3000/user",{
+    fetch("https://todo-db-kevin.herokuapp.com/user",{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -33,20 +30,15 @@ const Home = () => {
     })
     .catch(err => {console.log(err)})
 
-    // setTodos([{ id: 1, message: "do this", checked: false }, { id: 2, message: "do this", checked: false }, { id: 3, message: "do this", checked: false }, { id: 4, message: "do this", checked: false },])
   }, [])
 
   const onClick = () => {
-    console.log(newTodos[newTodos.length - 1].message, "message")
-    console.log(currUser._id)
     let realTodo = {
       message: newTodos[newTodos.length - 1].message,
       user_id: currUser._id
     }
-    console.log(currUser._id)
 
-
-    fetch("http://localhost:3000/todo/create", {
+    fetch("https://todo-db-kevin.herokuapp.com/todo/create", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(realTodo)
@@ -104,30 +96,14 @@ const Home = () => {
     return new Date().toDateString();
   }
 
+  if(!window.localStorage.getItem("birdie")){
+    return <Redirect from="/" to="login" noThrow/>
+  }
   return (
     <div className="paperWrapper">
        <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.74)', fontSize: "50px", padding: "0", margin: "0", fontFamily: "Roboto" }}>todos</h1>
         <Paper elevation={20} className="paper">
-          <header>
-            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "100%"}}>
-              <div style={{paddingRight: "4%"}}>
-                <CustomIconButton onClick={iconClick} value="true" color="primary" size="medium">
-                  <FiPlusCircle />
-                </CustomIconButton>
-                <CustomIconButton onClick={iconClick} value="false" color="primary" size="medium">
-                  <FiMinusCircle />
-                </CustomIconButton>
-                <Link to="login">login</Link> 
-                <Link to="signup">signup</Link> 
-              </div>
-              <div style={{ display: "flex", flexDirection: "row", alignItems: "center"}}> 
-                <h4 style={{paddingRight: "15px", color: "rgba(0, 0, 0, 0.54)"}}>{date()}</h4>
-                <Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'} style={{color: "rgba(0, 0, 0, 0.54)"}}/>
-              </div>
-              
-            </div>
-
-          </header>
+          <Header date={date} iconClick={iconClick} />
           <div>
             <TodoList handleToggle={handleToggle} handleChange={handleChange} addTodo={addToDo} onClick={onClick} todos={todos} setTodos={setTodos} todoDelete={todoDelete} />
           </div>

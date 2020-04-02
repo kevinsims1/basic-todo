@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
-import {navigate} from '@reach/router'
+import { navigate, Link } from '@reach/router';
 
-
-const Signup = () => {
+const Login = () => {
     const [name, setName] = useState()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch("http://localhost:3000/user/create",{
-            method: 'POST',
+        fetch("https://todo-db-kevin.herokuapp.com/user/login", {
+            method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 name,
-             })  
+             }) 
         })
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            // window.localStorage.setItem("birdie", data.token)
-            navigate("login")
+            window.localStorage.setItem("birdie", data.data)
+            navigate("/")
         })
         .catch(err => {console.log(err)})
     }
@@ -26,12 +25,16 @@ const Signup = () => {
     return (
         <div className="formWrapper">
             <form onSubmit={handleSubmit} style={{ maxWidth: "500px", padding: "15px", borderColor: "2px solid white", margin: "auto" }}>
-                <input type="text" name="userName" id="SignupEmail" placeholder="Username" style={{ backgroundColor: "rgb(21, 32, 43)", color: "white" }} onChange={e => setName(e.target.value)} />
+                <input type="text" name="userName" id="LoginEmail" placeholder="Username" style={{ backgroundColor: "rgb(21, 32, 43)", color: "white" }} onChange={e => setName(e.target.value)} />
                 <button style={{ color: "black" }} type="submit">Submit</button>
+                <div>
+                    <h3>Signup Here </h3>
+                    <Link to="/signup">signup</Link> 
+                </div>
             </form>
         </div>
 
     );
 }
 
-export default Signup;
+export default Login;
