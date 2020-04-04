@@ -62,12 +62,18 @@ const Home = () => {
   }
 
   const todoDelete = (e) => {
+    fetch('https://todo-db-kevin.herokuapp.com/todo/delete', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(e.currentTarget.value)
+    })
     var td = []
     for (var i = 0; i < todos.length; i++) {
-      if (e.currentTarget.value != todos[i].id) {
+      if (e.currentTarget.value != todos[i]._id) {
         td.push(todos[i])
       }
     }
+    console.log(td)
     setTodos(td)
   }
 

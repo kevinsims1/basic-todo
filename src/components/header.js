@@ -21,12 +21,14 @@ const Header = ({ iconClick, date }) => {
           <CustomIconButton onClick={iconClick} value="false" color="primary" size="medium">
             <FiMinusCircle />
           </CustomIconButton>
-          <Link to="login">login</Link> 
-          <Link to="signup">signup</Link> 
         </div>
         <div style={{ display: "flex", flexDirection: "row", alignItems: "center"}}> 
           <h4 style={{paddingRight: "15px", color: "rgba(0, 0, 0, 0.54)"}}>{date()}</h4>
-          <Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'} style={{color: "rgba(0, 0, 0, 0.54)"}}/>
+          <div ><Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'} style={{color: "rgba(0, 0, 0, 0.54)" }}/></div>
+          <div style={{textDecoration: 'none', marginLeft: '4em', display: 'flex', flexDirection: 'row', alignItems: "center",}}>
+                <Link to="login" style={{textDecoration: 'none', color: 'rgba(0, 0, 0, 0.65)', margin: '10px'}} >login</Link>
+                <Link to="signup" style={{textDecoration: 'none', color: 'rgba(0, 0, 0, 0.65)', margin: '10px'}} >signup</Link> 
+          </div>
         </div>
       </div>
     </header>

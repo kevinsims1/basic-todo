@@ -8,7 +8,7 @@ import '../styles/css/todoList.css'
 import '../styles/css/paper.css'
 
 const TodoList = (props) => {
-  if (props.addTodo){
+  if (props.addTodo && props.todoDelete){
 
     if (props.addTodo === "true") {
       return (

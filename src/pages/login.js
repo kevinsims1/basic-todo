@@ -29,7 +29,7 @@ const Login = () => {
                 <button style={{ color: "black" }} type="submit">Submit</button>
                 <div>
                     <h3>Signup Here </h3>
-                    <Link to="/signup">signup</Link> 
+                    <Link to="/signup" style={{textDecoration: 'none', color: 'rgba(0, 0, 0, 0.54)', margin: '10px'}}>signup</Link> 
                 </div>
             </form>
         </div>

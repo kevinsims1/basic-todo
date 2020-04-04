@@ -28,7 +28,7 @@ const Todo = (props) => {
                     </ListItemIcon>
 
                     <ListItemIcon>
-                        <IconButton value={props.todo.id} onClick={props.todoDelete} style={{color: 'rgba(0, 0, 0, 0.54)'}}>
+                        <IconButton value={props.todo._id} onClick={props.todoDelete} style={{color: 'rgba(0, 0, 0, 0.54)'}}>
                             <MdDelete size={30} />
                         </IconButton>
                     </ListItemIcon>
