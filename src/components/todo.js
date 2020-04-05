@@ -1,8 +1,6 @@
 import React from "react";
 import { Paper, IconButton } from '@material-ui/core';
-import List from '@material-ui/core/list';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { List, ListItem, ListItemIcon, }from '@material-ui/core';
 import { MdDelete } from "react-icons/md"
 
 import {CustomCheckbox, CustomLit} from '../styles/Customs.js'
