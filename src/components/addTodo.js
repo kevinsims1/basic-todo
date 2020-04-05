@@ -16,7 +16,7 @@ const AddTodo = (props) => {
             Add Todo
           </CustomButton>
           
-          <TextField id="standard-basic"  color="primary" label="New Todo" onChange={(e) => props.handleChange(e)}/>
+          <TextField id="standard-basic"  value={props.newTodo} color="primary" label="New Todo" onChange={(e) => props.handleChange(e)}/>
         </div>
     )
 };

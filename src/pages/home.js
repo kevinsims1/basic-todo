@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TodoList from '../components/todoList.js'
 import { Paper } from '@material-ui/core'
 
+
 import { Redirect } from "@reach/router"
 import Header from "../components/header.js"
 
@@ -12,10 +13,10 @@ const Home = () => {
   const [currUser, setCurUser] = useState({})
   const [todos, setTodos] = useState([]);
   const [addToDo, setAddTodo] = useState("false")
-  const [newTodos, setNewTodos] = useState([])
+  const [newTodo, setNewTodo] = useState("")
 
   useEffect(() => {
-    fetch("https://todo-db-kevin.herokuapp.com/user",{
+    fetch("http://localhost:3000/user",{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -32,13 +33,20 @@ const Home = () => {
 
   }, [])
 
+
+  const handleChange = (e) => {
+    setNewTodo(e.target.value)
+  }
+
+
   const onClick = () => {
     let realTodo = {
-      message: newTodos[newTodos.length - 1].message,
+      message: newTodo,
       user_id: currUser._id
     }
+    console.log(currUser._id)
 
-    fetch("https://todo-db-kevin.herokuapp.com/todo/create", {
+    fetch("http://localhost:3000/todo/create", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(realTodo)
@@ -47,12 +55,16 @@ const Home = () => {
       console.log(response)
       return response.json()
     })
-    .then(data => {
-        console.log(data)
-        setTodos(newTodos)
+    .then(object => {
+        console.log(object.data)
+        setTodos([...todos, object.data])
+        setNewTodo("")
     })
     .catch(err => {console.log("ERROROROR",err)})
   }
+
+  
+
 
   const iconClick = (e) => {
     console.log(e.currentTarget.value)
@@ -61,41 +73,58 @@ const Home = () => {
     console.log(addToDo)
   }
 
+  
+
   const todoDelete = (e) => {
-    fetch('https://todo-db-kevin.herokuapp.com/todo/delete', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(e.currentTarget.value)
+    fetch("http://localhost:3000/todo/delete", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ _id: e.currentTarget.value })
     })
-    var td = []
-    for (var i = 0; i < todos.length; i++) {
-      if (e.currentTarget.value != todos[i]._id) {
-        td.push(todos[i])
-      }
-    }
-    console.log(td)
-    setTodos(td)
+    .then(response => {
+      console.log(response)
+      return response.json()
+    })
+    .then(object => {
+        console.log(object)
+        const td = []
+        for (var i = 0; i < todos.length; i++) {
+          if (object.data._id !== todos[i]._id) {
+            td.push(todos[i])
+          }
+        }
+        console.log(td)
+        setTodos(td)
+    })
+    .catch(err => {console.log("ERROROROR",err)})
+
+    
   }
 
-
-  const handleChange = (e) => {
-    let phonyTodo = {
-      id: todos.length + 1,
-      message: e.target.value,
-      checked: false
-    }
-
-    let newTD = [...todos, phonyTodo]
-    setNewTodos(newTD)
-  }
-
-  const handleToggle = (id) => {
-    const item = todos.find((todo) => todo.id === id)
-    const newItem = { ...item, checked: !item.checked }
-    const index = todos.findIndex(item => item.id === id)
-    const newItems = [...todos]
-    newItems[index] = newItem
-    setTodos(newItems)
+  const handleChecked = (todo) => {
+    fetch("http://localhost:3000/todo/update", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+    },
+      body: JSON.stringify({ id: todo._id, checked: !todo.checked })
+    })
+    .then(response => {
+      console.log(response)
+      return response.json()
+    })
+    .then(object => {
+        console.log(object.data)
+        
+        const index = todos.findIndex(todo => todo._id === object.data._id)
+        console.log(index)
+        const newItems = [...todos]
+        newItems[index] = object.data
+        setTodos(newItems)
+    })
+    .catch(err => {console.log("ERROROROR",err)})
+    
+    
   }
 
   const date = () => {
@@ -111,7 +140,7 @@ const Home = () => {
         <Paper elevation={20} className="paper">
           <Header date={date} iconClick={iconClick} />
           <div>
-            <TodoList handleToggle={handleToggle} handleChange={handleChange} addTodo={addToDo} onClick={onClick} todos={todos} setTodos={setTodos} todoDelete={todoDelete} />
+            <TodoList handleChecked={handleChecked} newTodo={newTodo}  handleChange={handleChange} addTodo={addToDo} onClick={onClick} todos={todos} setTodos={setTodos} todoDelete={todoDelete} />
           </div>
         </Paper>
     </div>

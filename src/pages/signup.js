@@ -7,7 +7,7 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch("https://todo-db-kevin.herokuapp.com/user/create",{
+        fetch("http://localhost:3000/user/create",{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 

@@ -23,7 +23,7 @@ const Todo = (props) => {
                         <CustomCheckbox
                             color="primary"
                             checked={props.todo.checked}
-                            onChange={() => props.handleToggle(props.todo.id)}
+                            onChange={() => props.handleChecked(props.todo)}
                         />
                     </ListItemIcon>
 

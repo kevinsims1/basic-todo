@@ -13,9 +13,9 @@ const TodoList = (props) => {
     if (props.addTodo === "true") {
       return (
         <Paper elevation={0} className="todopaper">
-          <AddTodo handleChange={props.handleChange} onClick={props.onClick} />
+          <AddTodo handleChange={props.handleChange} onClick={props.onClick} newTodo={props.newTodo} />
           <div className="todoList">
-            {props.todos.slice(0).reverse().map((todo) => <Todo key={todo.id} todo={todo} todoDelete={props.todoDelete} handleToggle={props.handleToggle} />)}
+            {props.todos.slice(0).reverse().map((todo) => <Todo key={todo.id} todo={todo} todoDelete={props.todoDelete} handleChecked={props.handleChecked} />)}
           </div>
         </Paper>
       )
@@ -23,7 +23,7 @@ const TodoList = (props) => {
       return (
         <Paper elevation={0} className="todopaper">
           <div className="todoList">
-            {props.todos.length > 0 ? props.todos.slice(0).reverse().map((todo) => <Todo key={todo.id} todo={todo} todoDelete={props.todoDelete} handleToggle={props.handleToggle} />) : <div>Click Plus Button To Add Todo</div>}
+            {props.todos.length > 0 ? props.todos.slice(0).reverse().map((todo) => <Todo key={todo.id} todo={todo} todoDelete={props.todoDelete} handleChecked={props.handleChecked} />) : <div>Click Plus Button To Add Todo</div>}
           </div>
         </Paper>
       )
