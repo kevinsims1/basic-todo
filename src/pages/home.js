@@ -16,7 +16,7 @@ const Home = () => {
   const [newTodo, setNewTodo] = useState("")
 
   useEffect(() => {
-    fetch("http://localhost:3000/user",{
+    fetch("https://todo-db-kevin.herokuapp.com/user",{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const Home = () => {
     }
     console.log(currUser._id)
 
-    fetch("http://localhost:3000/todo/create", {
+    fetch("https://todo-db-kevin.herokuapp.com/todo/create", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(realTodo)
@@ -76,7 +76,7 @@ const Home = () => {
   
 
   const todoDelete = (e) => {
-    fetch("http://localhost:3000/todo/delete", {
+    fetch("https://todo-db-kevin.herokuapp.com/todo/delete", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ _id: e.currentTarget.value })
@@ -102,7 +102,7 @@ const Home = () => {
   }
 
   const handleChecked = (todo) => {
-    fetch("http://localhost:3000/todo/update", {
+    fetch("https://todo-db-kevin.herokuapp.com/todo/update", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
