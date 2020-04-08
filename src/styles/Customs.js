@@ -6,10 +6,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 export const CustomButton = withStyles(() => ({
   root: {
     color: '#efefef',
-    backgroundColor: 'rgba(0, 0, 0, 0.54)',
+    backgroundColor: '#90caf9;',
     '&:hover': {
       opacity: 0.7,
-      backgroundColor: 'rgba(0, 0, 0, 0.54)',
+      backgroundColor: '#90caf9;',
     },
   },
 }))(Button);
@@ -17,7 +17,7 @@ export const CustomButton = withStyles(() => ({
 //custom matieral ui IconButton
 export const CustomIconButton = withStyles(() => ({
   root: {
-    color: 'rgba(0, 0, 0, 0.54)',
+    color: '#90caf9',
     backgroundColor: '#efefef',
     padding: 0,
     margin: '10px',
