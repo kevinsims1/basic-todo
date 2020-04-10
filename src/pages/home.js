@@ -25,7 +25,6 @@ const Home = () => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data)
         setCurUser(data.user)
         setTodos(data.todos)
     })
@@ -44,7 +43,6 @@ const Home = () => {
       message: newTodo,
       user_id: currUser._id
     }
-    console.log(currUser._id)
 
     fetch("https://todo-db-kevin.herokuapp.com/todo/create", {
       method: "POST",
@@ -52,11 +50,9 @@ const Home = () => {
       body: JSON.stringify(realTodo)
     })
     .then(response => {
-      console.log(response)
       return response.json()
     })
     .then(object => {
-        console.log(object.data)
         setTodos([...todos, object.data])
         setNewTodo("")
     })
@@ -67,10 +63,8 @@ const Home = () => {
 
 
   const iconClick = (e) => {
-    console.log(e.currentTarget.value)
     e.preventDefault()
     setAddTodo(e.currentTarget.value)
-    console.log(addToDo)
   }
 
   
@@ -82,18 +76,15 @@ const Home = () => {
       body: JSON.stringify({ _id: e.currentTarget.value })
     })
     .then(response => {
-      console.log(response)
       return response.json()
     })
     .then(object => {
-        console.log(object)
         const td = []
         for (var i = 0; i < todos.length; i++) {
           if (object.data._id !== todos[i]._id) {
             td.push(todos[i])
           }
         }
-        console.log(td)
         setTodos(td)
     })
     .catch(err => {console.log("ERROROROR",err)})
@@ -110,14 +101,10 @@ const Home = () => {
       body: JSON.stringify({ id: todo._id, checked: !todo.checked })
     })
     .then(response => {
-      console.log(response)
       return response.json()
     })
     .then(object => {
-        console.log(object.data)
-        
         const index = todos.findIndex(todo => todo._id === object.data._id)
-        console.log(index)
         const newItems = [...todos]
         newItems[index] = object.data
         setTodos(newItems)

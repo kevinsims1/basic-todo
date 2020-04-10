@@ -15,7 +15,6 @@ const Login = () => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             window.localStorage.setItem("birdie", data.data)
             navigate("/")
         })
