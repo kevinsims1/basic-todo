@@ -5,7 +5,6 @@ import {CustomButton} from '../styles/Customs.js'
 //css
 import "../styles/css/paper.css"
 
-//TODO: find out how to use withStyles from material ui
 
 const AddTodo = (props) => {
 
