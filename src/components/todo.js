@@ -9,7 +9,6 @@ import {CustomCheckbox, CustomLit} from '../styles/Customs.js'
 import '../styles/css/todo.css'
 
 
-
 const Todo = (props) => {
    
 
