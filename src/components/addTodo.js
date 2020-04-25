@@ -7,8 +7,6 @@ import "../styles/css/paper.css"
 
 
 const AddTodo = (props) => {
-
-
     return (
         <Box className="addtodo">
           <CustomButton variant="contained"  className="button"  size="large" onClick={()=>props.onClick()} >
