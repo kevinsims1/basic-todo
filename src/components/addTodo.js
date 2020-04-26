@@ -12,7 +12,6 @@ const AddTodo = (props) => {
           <CustomButton variant="contained"  className="button"  size="large" onClick={()=>props.onClick()} >
             Add Todo
           </CustomButton>
-          
           <TextField id="standard-basic"  value={props.newTodo} color="primary" label="New Todo" onChange={(e) => props.handleChange(e)}/>
         </Box>
     )
